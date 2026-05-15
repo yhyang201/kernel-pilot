@@ -1,0 +1,9 @@
+{
+  "name": "kernel-pilot",
+  "description": "GPU kernel optimization skills with CUDA knowledge, Nsight Compute profiling, and Humanize RLCR integration.",
+  "version": "0.1.0",
+  "author": {
+    "name": "BBuf"
+  },
+  "repository": "https://github.com/BBuf/kernel-pilot"
+}

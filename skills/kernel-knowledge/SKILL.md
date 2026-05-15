@@ -17,7 +17,8 @@ The installer hydrates this path:
 {{KERNEL_KNOWLEDGE_ROOT}}
 ```
 
-If the path is not hydrated, locate the repo containing `knowledge/index.json`
+If the path is not hydrated, use `${CLAUDE_PLUGIN_ROOT}` when running as a
+Claude Code plugin, or locate the repo containing `knowledge/index.json`
 and `references/kernel-source-catalog.md`.
 
 ## Required Use

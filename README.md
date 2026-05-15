@@ -100,6 +100,37 @@ If Codex shows `hook needs review`, open **`/hooks`** and approve the Humanize
 Stop hook. Use **`/permissions`** to switch to Full Access, then continue after
 Codex shows **`Permissions updated to Full Access`**.
 
+## Install (Claude Code)
+
+KernelPilot also runs as a Claude Code plugin with Codex as the RLCR reviewer.
+Requires [Codex CLI](https://github.com/openai/codex).
+
+Start Claude Code and run:
+
+```bash
+/plugin marketplace add git@github.com:PolyArch/humanize.git
+/plugin install humanize@PolyArch
+
+# TODO: before merging to main, change to BBuf/kernel-pilot and kernel-pilot@BBuf
+# and update .claude-plugin/marketplace.json owner from yhyang201 to BBuf
+/plugin marketplace add yhyang201/kernel-pilot@claude-code-plugin
+/plugin install kernel-pilot@yhyang201
+```
+
+Restart Claude Code after installation. Open `/skills` and check that these
+skills are visible:
+
+- `kernel-pilot:humanize-kernel-agent-loop`
+- `kernel-knowledge`
+- `profile-evidence`
+- `humanize:start-rlcr-loop`, `humanize:gen-plan`, etc.
+
+For local development, run with both plugin directories:
+
+```bash
+claude --plugin-dir ~/humanize --plugin-dir ~/kernel-pilot
+```
+
 ## Knowledge Base
 
 `kernel-knowledge` includes copied AKO4ALL CUDA/CUTLASS/NCU references plus a

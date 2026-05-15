@@ -1,0 +1,14 @@
+{
+  "name": "yhyang201",
+  "owner": {
+    "name": "yhyang201"
+  },
+  "plugins": [
+    {
+      "name": "kernel-pilot",
+      "source": "./",
+      "description": "GPU kernel optimization skills with CUDA knowledge, Nsight Compute profiling, and Humanize RLCR integration.",
+      "version": "0.1.0"
+    }
+  ]
+}

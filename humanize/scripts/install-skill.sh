@@ -86,7 +86,13 @@ validate_repo() {
     [[ -d "$RUNTIME_SOURCE_ROOT/config" ]] || die "config directory not found under runtime source root: $RUNTIME_SOURCE_ROOT"
     [[ -d "$RUNTIME_SOURCE_ROOT/agents" ]] || die "agents directory not found under runtime source root: $RUNTIME_SOURCE_ROOT"
     for skill in "${SKILL_NAMES[@]}"; do
-        [[ -f "$SKILLS_SOURCE_ROOT/$skill/SKILL.md" ]] || die "missing $SKILLS_SOURCE_ROOT/$skill/SKILL.md"
+        if [[ ! -f "$SKILLS_SOURCE_ROOT/$skill/SKILL.md" ]]; then
+            # Fall back to KernelPilot repo-root skills/
+            if [[ -n "$KERNELPILOT_ROOT" ]] && [[ -f "$KERNELPILOT_ROOT/skills/$skill/SKILL.md" ]]; then
+                continue
+            fi
+            die "missing $SKILLS_SOURCE_ROOT/$skill/SKILL.md"
+        fi
     done
 }
 
@@ -163,6 +169,10 @@ sync_one_skill() {
     local skill="$1"
     local target_dir="$2"
     local src="$SKILLS_SOURCE_ROOT/$skill"
+    # Fall back to KernelPilot repo-root skills/ if not found in Humanize
+    if [[ ! -d "$src" ]] && [[ -n "$KERNELPILOT_ROOT" ]] && [[ -d "$KERNELPILOT_ROOT/skills/$skill" ]]; then
+        src="$KERNELPILOT_ROOT/skills/$skill"
+    fi
     local dst="$target_dir/$skill"
     sync_dir "$src" "$dst"
 }

@@ -17,7 +17,8 @@ Humanize runtime: {{HUMANIZE_RUNTIME_ROOT}}
 KernelPilot root: {{KERNELPILOT_ROOT}}
 ```
 
-If `{{KERNELPILOT_ROOT}}` was not hydrated, locate a repository containing
+If `{{KERNELPILOT_ROOT}}` was not hydrated, use `${CLAUDE_PLUGIN_ROOT}` when
+running as a Claude Code plugin, or locate a repository containing
 `knowledge/index.json` and `references/kernel-source-catalog.md`.
 
 ## Contract
@@ -216,6 +217,9 @@ from inside the standalone repo:
 ```bash
 "{{HUMANIZE_RUNTIME_ROOT}}/scripts/setup-rlcr-loop.sh" .humanize/kernel-agent/refined-plan.md --yolo
 ```
+
+If `{{HUMANIZE_RUNTIME_ROOT}}` is not hydrated, locate the Humanize plugin
+directory containing `scripts/setup-rlcr-loop.sh`.
 
 If setup exits non-zero, stop and report the error. Do not bypass the gate.
 
